@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,29 +17,17 @@
     <main>
         <section class="esquerda">
             <img src="images/01.jpg" alt="mulher olhando lista de compras">
-            <form aria-hidden="false">
-                <div>
-                    <label>
-                        Adcione um novo item
-                    </label>
-                    <textarea required rows="4" placeholder="O que vai comprar?"></textarea>
-                </div>
-                <div>
-                    <label>
-                        Qual nivel de prioriadade para este item?
-                    </label>
-                    <div>
-                        <button id="decrease"> < </button>
-                        <span id="priority-level">Alta</span>
-                        <button id="increase"> > </button>
-                    </div>
-                </div>
+            <form class="hidden formulario" aria-hidden="true">
+                <label class="novo__item">
+                    Adcione um novo item
+                </label>
+                <textarea class="form__textarea" required rows="4" placeholder="O que vai comprar?"></textarea>
                 <footer>
-                    <button>
-                        <img src="images/x.png" alt="x"> Cancelar
+                    <button class="cancelar">
+                        Cancelar
                     </button>
                     <button>
-                        <img src="images/salvar.png" alt="salvar"> Salvar
+                        Salvar
                     </button>
                 </footer>
             </form>
@@ -47,13 +35,19 @@
         <section class="direita">
             <header>
                 <h2>Lista de compras</h2>
-                <button>
+                <button class="apagar-tudo">
                     <img src="images/trash.svg" alt="lata de lixo"> Apagar todos os itens
                 </button>
             </header>
             <p>Você não tem nenhum item adcionado</p>
-            <ul></ul>
-            <button>
+            <ul>
+                <li class="item-lista">
+                    <button class="completo"></button>
+                    <p class="lista__p">Comprar pão</p>
+                    <button class="excluir"></button>
+                </li>
+            </ul>
+            <button class="direita__bt-novo-item">
                 <img src="images/adicionar.png" alt="sinal de mais"> Adicionar novo item
             </button>
         </section>
