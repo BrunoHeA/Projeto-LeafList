@@ -180,8 +180,7 @@ main .direita header .apagar-tudo {
 main .direita header .apagar-tudo:hover {
   background: #137547;
 }
-main .direita p {
-  display: none;
+main .direita .vazio {
   font-size: 1.5rem;
   align-self: center;
   text-align: center;

@@ -4,11 +4,22 @@ const textArea = document.querySelector('textarea')
 const uLista = document.querySelector('ul')
 const excluirTodas = document.querySelector('.apagar-tudo')
 const cancelar = document.querySelector('.cancelar')
+const vazio = document.querySelector('.vazio')
 
 let tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 
 function atualizarTarefas() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
+}
+
+function estaVazio() {
+    if ( document.querySelector('.item-lista') === null) {
+        uLista.classList.add('hidden')
+        vazio.classList.remove('hidden')
+    } else {
+        uLista.classList.remove('hidden')
+        vazio.classList.add('hidden')
+    }
 }
 
 btnAdicionarItem.addEventListener('click', () => {
@@ -39,6 +50,7 @@ function criarElementoTarefa(tarefa) {
     button2.onclick = () => {
         li.remove()
         tarefas = tarefas.filter(tarefaItem => tarefaItem.descricao !== tarefa.descricao)
+        estaVazio()
         atualizarTarefas()
     }
 
@@ -54,13 +66,13 @@ formulario.addEventListener('submit', (evento) => {
         descricao: textArea.value,
         completa: false
     }
-
     tarefas.push(tarefa);
     const elementoTarefa = criarElementoTarefa(tarefa)
     uLista.append(elementoTarefa)
     atualizarTarefas()
     textArea.value = ''
     formulario.classList.add('hidden')
+    estaVazio()
 })
 
 cancelar.onclick = (evento) => {
@@ -79,5 +91,8 @@ excluirTodas.onclick = () => {
         elemento.remove()
     })
     tarefas = []
+    estaVazio()
     atualizarTarefas()
 }
+
+estaVazio()
