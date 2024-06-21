@@ -5,12 +5,32 @@ const uLista = document.querySelector('ul')
 const excluirTodas = document.querySelector('.apagar-tudo')
 const cancelar = document.querySelector('.cancelar')
 const vazio = document.querySelector('.vazio')
+const mais = document.querySelector('.mais')
+const menos = document.querySelector('.menos')
+const quantidade = document.querySelector('.numero')
 
 let tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 
 function atualizarTarefas() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
 }
+
+let numero = 1
+mais.addEventListener('click', (evento) => { 
+    debugger
+    evento.preventDefault()
+    if (numero < 20) {
+        numero = numero + 1
+        quantidade.innerHTML = numero
+    }
+})
+menos.addEventListener('click', (evento) => { 
+    evento.preventDefault()
+    if (numero > 1) {
+        numero = numero - 1
+        quantidade.innerHTML = numero
+    }
+})
 
 function estaVazio() {
     if ( document.querySelector('.item-lista') === null) {
@@ -43,7 +63,7 @@ function criarElementoTarefa(tarefa) {
 
     const text = document.createElement('p')
     text.classList.add('lista__p')
-    text.innerHTML = tarefa.descricao
+    text.innerHTML = numero + 'x ' + tarefa.descricao
 
     const button2 = document.createElement('button')
     button2.classList.add('excluir')
@@ -72,12 +92,16 @@ formulario.addEventListener('submit', (evento) => {
     atualizarTarefas()
     textArea.value = ''
     formulario.classList.add('hidden')
+    numero = 1
+    quantidade.innerHTML = numero
     estaVazio()
 })
 
 cancelar.onclick = (evento) => {
     evento.preventDefault();
     textArea.value = ''
+    numero = 1
+    quantidade.innerHTML = 1
     formulario.classList.add('hidden')
 }
 
